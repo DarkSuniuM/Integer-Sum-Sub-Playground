@@ -2,8 +2,14 @@ from random import randint, choice
 
 print("Type \"exit\" to Exit the program.")
 OPERATORS = ('-', '+')
-HAPPY_ANSWERS = ('Good job', 'Nice', 'That\'s what I\'m talking about', 'Yeah Baby')
-SAD_ANSWERS = ('Oh nooo', 'It\'s wrong', 'You can do better', 'Be more careful')
+HAPPY_ANSWERS = ('Good job',
+                 'Nice',
+                 'That\'s what I\'m talking about',
+                 'Yeah Baby')
+SAD_ANSWERS = ('Oh nooo',
+               'It\'s wrong',
+               'You can do better',
+               'Be more careful')
 
 
 def getAnswer(first_operand: int, second_operand: int, operator: str):
@@ -22,6 +28,9 @@ while True:
     first_operand = randint(-50, +50)
     second_operand = randint(-50, +50)
     user_answer = input(f"{first_operand} {operator} {second_operand} = ")
+    while not user_answer.isdecimal() and user_answer != 'exit':
+        print("The answer should be a decimal/integer number!")
+        user_answer = input(f"{first_operand} {operator} {second_operand} = ")
     if user_answer == "exit":
         break
     real_answer = getAnswer(first_operand, second_operand, operator)
