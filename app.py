@@ -23,13 +23,21 @@ def checkAnswer(expected_answer, given_answer):
     return int(expected_answer) == int(given_answer)
 
 
+def inputValidation(input):
+    try:
+        int(input)
+        return True
+    except ValueError:
+        return False
+
+
 while True:
     try:
         operator = choice(OPERATORS)
         first_operand = randint(-50, +50)
         second_operand = randint(-50, +50)
         user_answer = input(f"{first_operand} {operator} {second_operand} = ")
-        while not user_answer.isdecimal() and user_answer != 'exit':
+        while not inputValidation(user_answer) and user_answer != 'exit':
             print("The answer should be a decimal/integer number!")
             user_answer = input(f"{first_operand} {operator} {second_operand} = ")
         if user_answer == "exit":
