@@ -24,18 +24,22 @@ def checkAnswer(expected_answer, given_answer):
 
 
 while True:
-    operator = choice(OPERATORS)
-    first_operand = randint(-50, +50)
-    second_operand = randint(-50, +50)
-    user_answer = input(f"{first_operand} {operator} {second_operand} = ")
-    while not user_answer.isdecimal() and user_answer != 'exit':
-        print("The answer should be a decimal/integer number!")
+    try:
+        operator = choice(OPERATORS)
+        first_operand = randint(-50, +50)
+        second_operand = randint(-50, +50)
         user_answer = input(f"{first_operand} {operator} {second_operand} = ")
-    if user_answer == "exit":
+        while not user_answer.isdecimal() and user_answer != 'exit':
+            print("The answer should be a decimal/integer number!")
+            user_answer = input(f"{first_operand} {operator} {second_operand} = ")
+        if user_answer == "exit":
+            break
+        real_answer = getAnswer(first_operand, second_operand, operator)
+        if checkAnswer(real_answer, user_answer):
+            print(choice(HAPPY_ANSWERS))
+            continue
+        print(choice(SAD_ANSWERS),
+            f", The answer was {real_answer}. :(")
+    except (KeyboardInterrupt, EOFError):
+        print("\nGoodbye!")
         break
-    real_answer = getAnswer(first_operand, second_operand, operator)
-    if checkAnswer(real_answer, user_answer):
-        print(choice(HAPPY_ANSWERS))
-        continue
-    print(choice(SAD_ANSWERS),
-          f", The answer was {real_answer}. :(")
