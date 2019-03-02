@@ -39,7 +39,8 @@ while True:
         user_answer = input(f"{first_operand} {operator} {second_operand} = ")
         while not inputValidation(user_answer) and user_answer != 'exit':
             print("The answer should be a decimal/integer number!")
-            user_answer = input(f"{first_operand} {operator} {second_operand} = ")
+            user_answer = input(
+                f"{first_operand} {operator} {second_operand} = ")
         if user_answer == "exit":
             break
         real_answer = getAnswer(first_operand, second_operand, operator)
@@ -47,7 +48,7 @@ while True:
             print(choice(HAPPY_ANSWERS))
             continue
         print(choice(SAD_ANSWERS),
-            f", The answer was {real_answer}. :(")
+              f", The answer was {real_answer}. :(")
     except (KeyboardInterrupt, EOFError):
         print("\nGoodbye!")
         break
